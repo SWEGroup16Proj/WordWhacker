@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WORD WHACKER_0: -1252982310752882769
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
