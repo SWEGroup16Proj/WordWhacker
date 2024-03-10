@@ -703,8 +703,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 333780586}
+  - component: {fileID: 333780587}
   m_Layer: 5
-  m_Name: HighScoreTable
+  m_Name: HighscoreTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -726,7 +727,7 @@ RectTransform:
   - {fileID: 984045788}
   - {fileID: 703498662}
   - {fileID: 155550960}
-  - {fileID: 1544163434}
+  - {fileID: 508667329}
   m_Father: {fileID: 1160910086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -734,6 +735,54 @@ RectTransform:
   m_AnchoredPosition: {x: -14.1997, y: -18.5688}
   m_SizeDelta: {x: 298.796, y: 233.2588}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &333780587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333780585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc63d282195a2944a49b3726c6c92a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1416164959}
+  nameText: {fileID: 24395767}
+  entryContainer: {fileID: 508667329}
+  entryTemplate: {fileID: 1544163434}
+--- !u!1 &508667328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 508667329}
+  m_Layer: 0
+  m_Name: highscoreEntryContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &508667329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508667328}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 189.43924, y: -35.631752, z: 2.4806256}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1544163434}
+  m_Father: {fileID: 333780586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,7 +1304,7 @@ GameObject:
   - component: {fileID: 1160910084}
   - component: {fileID: 1160910083}
   m_Layer: 5
-  m_Name: HighScores
+  m_Name: Highscores
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1910,7 +1959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1544163434}
   m_Layer: 0
-  m_Name: HighScoreEntryTemplate
+  m_Name: highscoreEntryTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1925,13 +1974,13 @@ Transform:
   m_GameObject: {fileID: 1544163433}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.9487677, y: 13.862211, z: 3.2873292}
+  m_LocalPosition: {x: -194.388, y: 49.493965, z: 0.80670357}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1416164958}
   - {fileID: 24395766}
-  m_Father: {fileID: 333780586}
+  m_Father: {fileID: 508667329}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1821363846
 GameObject:

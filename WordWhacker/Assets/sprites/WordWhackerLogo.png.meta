@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WordWhackerLogo_0: 4708823273249285089
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
