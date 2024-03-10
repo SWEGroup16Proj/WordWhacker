@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      vecteezy_neon-glowing-shape_18796027_0: 2294902602916616839
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

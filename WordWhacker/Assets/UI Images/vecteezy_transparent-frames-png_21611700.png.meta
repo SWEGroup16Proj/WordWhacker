@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      vecteezy_transparent-frames-png_21611700_0: -6972782199366963186
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
