@@ -10,13 +10,14 @@ public class Typer : MonoBehaviour
     public TMP_Text wordOutput = null;
     public WordBank wordBank = null;
 
-    private string remainingWord = string.Empty;
     private string currentWord = string.Empty;
+    private string typedWord = string.Empty;
+    private string remainingWord = string.Empty;
 
     // Start is called before the first frame update
     private void Start()
     {
-        SetCurrentWord();
+        GetNewWord();
     }
 
     // Update is called once per frame
@@ -25,17 +26,21 @@ public class Typer : MonoBehaviour
         CheckInput();
     }
 
-    private void SetCurrentWord()
+    private void GetNewWord()
     {
+        // Reset typed buffer
+        typedWord = string.Empty;
+
         // Get word from word bank
         currentWord = wordBank.GetWord();
-        SetRemainingWord(currentWord);
+        DisplayWord(typedWord, currentWord);
     }
 
-    private void SetRemainingWord(string newString)
+    private void DisplayWord(string oldString, string newString)
     {
+        typedWord += oldString;
         remainingWord = newString;
-        wordOutput.text = remainingWord;
+        wordOutput.text = "<color=grey>" + typedWord + "</color>" + remainingWord;
     }
 
     private void CheckInput()
@@ -50,8 +55,10 @@ public class Typer : MonoBehaviour
             }
             else if(keysPressed.Length > 1)
             {
-                // only take the first letter of string
-                EnterLetter(keysPressed.Substring(0,1));
+                for(int i = 0; i < keysPressed.Length; i++)
+                {
+                    EnterLetter(keysPressed.Substring(i,1));
+                }
             }
         }
     }
@@ -64,7 +71,7 @@ public class Typer : MonoBehaviour
 
             if(IsWordComplete())
             {
-                SetCurrentWord();
+                GetNewWord();
             }
         }
     }
@@ -77,8 +84,9 @@ public class Typer : MonoBehaviour
 
     private void RemoveLetter()
     {
+        string oldString = remainingWord.Substring(0,1);
         string newString = remainingWord.Remove(0,1);
-        SetRemainingWord(newString);
+        DisplayWord(oldString, newString);
     }
 
     private bool IsWordComplete()
