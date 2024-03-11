@@ -1,26 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class WordBank : MonoBehaviour
 {
-    private List<string> originalWords = new List<string>()
-    {
-        "the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"
-    };
+    private string filePath;
+
+    private List<string> originalWords = new List<string>();
+    // private List<string> originalWords = new List<string>()
+    // {
+    //     "the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"
+    // };
 
     private List<string> workingWords = new List<string>();
 
     private void Awake()
     {
+        // edit word bank in the word bank folder
+        filePath = Application.dataPath + "/WordBank/TestBank.txt";
+        ReadFile();
+
         // copy words to a new list
         workingWords.AddRange(originalWords);
         Shuffle(workingWords);
         ConvertToLower(workingWords);
+    }
+
+    private void ReadFile()
+    {
+        string[] lines = File.ReadAllLines(filePath);
+        // Debug.Log("array length: " + lines.Length);
+
+        for(int i = 0; i < lines.Length; i++)
+        {
+            originalWords.Add(lines[i]);
+        }   
     }
 
     private void Shuffle(List<string> list)
