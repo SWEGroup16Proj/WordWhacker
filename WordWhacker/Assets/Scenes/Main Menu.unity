@@ -1821,6 +1821,7 @@ GameObject:
   - component: {fileID: 812706963}
   - component: {fileID: 812706962}
   - component: {fileID: 812706961}
+  - component: {fileID: 812706964}
   m_Layer: 5
   m_Name: btnOptions
   m_TagString: Untagged
@@ -1942,6 +1943,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812706959}
   m_CullTransparentMesh: 1
+--- !u!114 &812706964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812706959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e881c280894c84aa4f8f36d168e657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 2037335077}
+  hoverSound: {fileID: 8300000, guid: 4dec8db0cb626284ebc3234dd3176170, type: 3}
+  clickSound: {fileID: 8300000, guid: 7fee89b121028c24bb586ff10f3c4db9, type: 3}
 --- !u!1 &869622740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,6 +2837,7 @@ GameObject:
   - component: {fileID: 1190981631}
   - component: {fileID: 1190981630}
   - component: {fileID: 1190981629}
+  - component: {fileID: 1190981632}
   m_Layer: 5
   m_Name: btnExit
   m_TagString: Untagged
@@ -2942,6 +2959,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190981627}
   m_CullTransparentMesh: 1
+--- !u!114 &1190981632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190981627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e881c280894c84aa4f8f36d168e657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 2037335077}
+  hoverSound: {fileID: 8300000, guid: 4dec8db0cb626284ebc3234dd3176170, type: 3}
+  clickSound: {fileID: 8300000, guid: 7fee89b121028c24bb586ff10f3c4db9, type: 3}
 --- !u!1 &1215002288
 GameObject:
   m_ObjectHideFlags: 0
@@ -3090,6 +3122,7 @@ GameObject:
   - component: {fileID: 1219771992}
   - component: {fileID: 1219771991}
   - component: {fileID: 1219771990}
+  - component: {fileID: 1219771993}
   m_Layer: 5
   m_Name: btnPlay
   m_TagString: Untagged
@@ -3199,6 +3232,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219771988}
   m_CullTransparentMesh: 1
+--- !u!114 &1219771993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219771988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e881c280894c84aa4f8f36d168e657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 2037335077}
+  hoverSound: {fileID: 8300000, guid: 4dec8db0cb626284ebc3234dd3176170, type: 3}
+  clickSound: {fileID: 8300000, guid: 7fee89b121028c24bb586ff10f3c4db9, type: 3}
 --- !u!1 &1240491764
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,6 +4014,7 @@ GameObject:
   - component: {fileID: 1745540730}
   - component: {fileID: 1745540729}
   - component: {fileID: 1745540728}
+  - component: {fileID: 1745540731}
   m_Layer: 5
   m_Name: btnOptions
   m_TagString: Untagged
@@ -4087,6 +4136,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745540726}
   m_CullTransparentMesh: 1
+--- !u!114 &1745540731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745540726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e881c280894c84aa4f8f36d168e657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 2037335077}
+  hoverSound: {fileID: 8300000, guid: 4dec8db0cb626284ebc3234dd3176170, type: 3}
+  clickSound: {fileID: 8300000, guid: 7fee89b121028c24bb586ff10f3c4db9, type: 3}
 --- !u!1 &1745951496
 GameObject:
   m_ObjectHideFlags: 0
@@ -4621,6 +4685,7 @@ GameObject:
   - component: {fileID: 1906488765}
   - component: {fileID: 1906488764}
   - component: {fileID: 1906488763}
+  - component: {fileID: 1906488766}
   m_Layer: 5
   m_Name: btnLeaderboard
   m_TagString: Untagged
@@ -4730,6 +4795,154 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906488761}
   m_CullTransparentMesh: 1
+--- !u!114 &1906488766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906488761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e881c280894c84aa4f8f36d168e657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 2037335077}
+  hoverSound: {fileID: 8300000, guid: 4dec8db0cb626284ebc3234dd3176170, type: 3}
+  clickSound: {fileID: 8300000, guid: 7fee89b121028c24bb586ff10f3c4db9, type: 3}
+--- !u!1 &2037335076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2037335079}
+  - component: {fileID: 2037335077}
+  m_Layer: 5
+  m_Name: ButtonSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &2037335077
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037335076}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4dec8db0cb626284ebc3234dd3176170, type: 3}
+  m_Resource: {fileID: 8300000, guid: 4dec8db0cb626284ebc3234dd3176170, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!224 &2037335079
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037335076}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2057835368
 GameObject:
   m_ObjectHideFlags: 0
@@ -4910,3 +5123,4 @@ SceneRoots:
   - {fileID: 1745951500}
   - {fileID: 701827857}
   - {fileID: 1731515873}
+  - {fileID: 2037335079}
