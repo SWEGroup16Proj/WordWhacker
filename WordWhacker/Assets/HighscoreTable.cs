@@ -11,39 +11,41 @@ using TMPro;
 public class HighscoreTable : MonoBehaviour
 {
     // Variables to hold references to UI elements
+   //[SerializeField] public GameObject entryContainer;
+    //[SerializeField] public GameObject entryTemplate;
     public TMP_Text scoreText;
     public TMP_Text nameText;
-    public Transform entryContainer;
-    public Transform entryTemplate;
-
+    [SerializeField] public Transform entryContainer;
+    [SerializeField] public Transform entryTemplate;
+    private List<HighscoreEntry> highscoreEntryList;
+    private List<Transform> highscoreEntryTransformList;
     private void Awake()
     {
-        // Find the entry container and entry template objects in the hierarchy
-        entryContainer = transform.Find("highscoreEntryContainer");
-        entryTemplate = transform.Find("highscoreEntryTemplate");
-
-        // Check if entry container or entry template is not found, log error and return
-        if (entryContainer == null)
-        {
-            Debug.LogError("Entry container not found!");
-            return;
-        }
-
-        if (entryTemplate == null)
-        {
-            Debug.LogError("Entry template not found!");
-            return;
-        }
-
+       
         // Deactivate the entry template object
         entryTemplate.gameObject.SetActive(false);
+        highscoreEntryList=new List<HighscoreEntry>(){
+            new HighscoreEntry{score = 777, name ="AAA"},
+            new HighscoreEntry{score = 690, name ="CAT"},
+            new HighscoreEntry{score = 680, name ="MAR"},
+            new HighscoreEntry{score = 420, name ="GLO"},
+        };
 
-        // Calculate the height of the entry template
-        float templateHeight = 20f;
+        highscoreEntryTransformList=new List<Transform>();
+        foreach (HighscoreEntry highscoreEntry in highscoreEntryList){
+            CreateHighscoreEntryTransform(highscoreEntry,entryContainer,highscoreEntryTransformList);
+        }
+        {
+            
+        }
+       
+    }
+//Function to create/add entries into the list
+
+private void CreateHighscoreEntryTransform(HighscoreEntry highscoreEntry, Transform container,List<Transform> transformList){
+      float templateHeight = 40f;
 
         // Loop to instantiate entry templates for testing purposes
-        for (int i = 0; i < 4; i++)
-        {
             // Instantiate entry template as a child of the entry container
             Transform entryTransform = Instantiate(entryTemplate, entryContainer);
 
@@ -51,18 +53,26 @@ public class HighscoreTable : MonoBehaviour
             RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
 
             // Set anchored position of the instantiated entry template
-            entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * i);
+            entryRectTransform.anchoredPosition = new Vector2(-361, -templateHeight * transformList.Count);
 
             // Activate the instantiated entry template object
             entryTransform.gameObject.SetActive(true);
-        }
 
-        // For Testing: Generate a random score and display it
-        int score = Random.Range(0, 1000);
-        scoreText.text = score.ToString();
+         // For Testing: Generate a random score and display it
+
+        int score = highscoreEntry.score;
+        scoreText.text=score.ToString();
+
 
         // For Testing: Set a default name
-        string name = "AAA";
-        nameText.text = name;
+        string name = highscoreEntry.name;
+        nameText.text=name;
+
+        transformList.Add(entryTransform);
+}
+//Represents single high score entry
+    private class HighscoreEntry{
+        public int score; 
+        public string name;
     }
 }
