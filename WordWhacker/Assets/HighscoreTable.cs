@@ -11,58 +11,120 @@ using TMPro;
 public class HighscoreTable : MonoBehaviour
 {
     // Variables to hold references to UI elements
+   
     public TMP_Text scoreText;
     public TMP_Text nameText;
-    public Transform entryContainer;
-    public Transform entryTemplate;
-
+    [SerializeField] public Transform entryContainer;
+    [SerializeField] public Transform entryTemplate;
+    private List<Transform> highscoreEntryTransformList;
     private void Awake()
     {
-        // Find the entry container and entry template objects in the hierarchy
-        entryContainer = transform.Find("highscoreEntryContainer");
-        entryTemplate = transform.Find("highscoreEntryTemplate");
-
-        // Check if entry container or entry template is not found, log error and return
-        if (entryContainer == null)
-        {
-            Debug.LogError("Entry container not found!");
-            return;
-        }
-
-        if (entryTemplate == null)
-        {
-            Debug.LogError("Entry template not found!");
-            return;
-        }
-
+       
         // Deactivate the entry template object
         entryTemplate.gameObject.SetActive(false);
+        
 
-        // Calculate the height of the entry template
-        float templateHeight = 20f;
+        string jsonString=PlayerPrefs.GetString("highscoreTable");
 
-        // Loop to instantiate entry templates for testing purposes
-        for (int i = 0; i < 4; i++)
-        {
+
+        Highscores highscores=JsonUtility.FromJson<Highscores>(jsonString);
+          if (highscores == null) {
+            // There's no stored table, initialize
+            Debug.Log("Initializing table with default values...");
+            AddHighscoreEntry(999, "CMK");
+            AddHighscoreEntry(555, "JOE");
+            AddHighscoreEntry(333, "DAV");
+            AddHighscoreEntry(222, "CAT");
+            AddHighscoreEntry(111, "MAX");
+            AddHighscoreEntry(444, "AAA");
+            // Reload
+            jsonString = PlayerPrefs.GetString("highscoreTable");
+            highscores = JsonUtility.FromJson<Highscores>(jsonString);
+        }
+        //Sorter
+        
+        for(int i = 0;i<highscores.highscoreEntryList.Count;i++){
+            for(int j=i+1;j<highscores.highscoreEntryList.Count;j++){
+                if(highscores.highscoreEntryList[j].score>highscores.highscoreEntryList[i].score)
+                {
+                    //swap
+                    HighscoreEntry tmp=highscores.highscoreEntryList[i];
+                    highscores.highscoreEntryList[i]=highscores.highscoreEntryList[j];
+                    highscores.highscoreEntryList[j]=tmp;
+                }
+            }
+        }
+        
+        highscoreEntryTransformList=new List<Transform>();
+        foreach (HighscoreEntry highscoreEntry in highscores.highscoreEntryList){
+            CreateHighscoreEntryTransform(highscoreEntry,entryContainer,highscoreEntryTransformList);
+        }
+       
+       
+       Debug.Log(PlayerPrefs.GetString("highscoreTable"));
+       
+       
+    }
+//Function to create/add entries into the list
+
+private void CreateHighscoreEntryTransform(HighscoreEntry highscoreEntry, Transform container,List<Transform> transformList){
+      float templateHeight = 40f;
+
+        
             // Instantiate entry template as a child of the entry container
-            Transform entryTransform = Instantiate(entryTemplate, entryContainer);
+            Transform entryTransform = Instantiate(entryTemplate, container);
 
             // Get RectTransform component of the instantiated entry template
             RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
 
             // Set anchored position of the instantiated entry template
-            entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * i);
+            entryRectTransform.anchoredPosition = new Vector2(-361, -templateHeight * transformList.Count);
 
             // Activate the instantiated entry template object
             entryTransform.gameObject.SetActive(true);
+
+         
+
+        int score = highscoreEntry.score;
+        scoreText.text=score.ToString();
+
+        string name = highscoreEntry.name;
+        nameText.text=name;
+
+        transformList.Add(entryTransform);
+}
+
+private class Highscores{
+    public List<HighscoreEntry> highscoreEntryList;
+}
+
+private void AddHighscoreEntry(int score, string name) {
+        // Create HighscoreEntry
+        HighscoreEntry highscoreEntry = new HighscoreEntry { score = score, name = name };
+        
+        // Load saved Highscores
+        string jsonString = PlayerPrefs.GetString("highscoreTable");
+        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+
+        if (highscores == null) {
+            // There's no stored table, initialize
+            highscores = new Highscores() {
+                highscoreEntryList = new List<HighscoreEntry>()
+            };
         }
+            //adds entry
+            highscores.highscoreEntryList.Add(highscoreEntry);
 
-        // For Testing: Generate a random score and display it
-        int score = Random.Range(0, 1000);
-        scoreText.text = score.ToString();
+            //Saves updated scores
+            string json=JsonUtility.ToJson(highscores);
+            PlayerPrefs.SetString("highscoreTable",json);
+            PlayerPrefs.Save();
 
-        // For Testing: Set a default name
-        string name = "AAA";
-        nameText.text = name;
+        
+}
+//Represents single high score entry
+[System.Serializable] private class HighscoreEntry{
+        public int score; 
+        public string name;
     }
 }
