@@ -10,12 +10,14 @@ public class WordBank : MonoBehaviour
 {
     private string filePath;
 
-    private List<string> originalWords = new List<string>();
-    // private List<string> originalWords = new List<string>()
-    // {
-    //     "the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"
-    // };
+    private List<string> tutorialWords = new List<string>()
+    {
+        // "the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"
+        "dog", "lazy", "that", "over", "jumps", "fox", "brown", "quick", "the"
+    };
 
+    private List<string> originalWords = new List<string>();
+    
     private List<string> workingWords = new List<string>();
 
     private void Awake()
@@ -62,13 +64,31 @@ public class WordBank : MonoBehaviour
         }
     }
 
-    public string GetWord()
+    public string GetWord(int level)
     {
         string newWord = string.Empty;
 
-        if(workingWords.Count != 0)
+        if(level == 0)
+        {
+            if(tutorialWords.Count != 0)
+            {
+                newWord = tutorialWords.Last();
+                Debug.Log(newWord);
+                tutorialWords.Remove(newWord);
+            }
+            else
+            {
+                level++;
+                Debug.Log("Level " + level);
+                newWord = workingWords.Last();
+                Debug.Log(newWord);
+                workingWords.Remove(newWord);
+            }
+        }
+        else if(workingWords.Count != 0)
         {
             newWord = workingWords.Last();
+            Debug.Log(newWord);
             workingWords.Remove(newWord);
         }
         else

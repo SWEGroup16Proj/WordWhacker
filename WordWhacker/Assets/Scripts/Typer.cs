@@ -9,10 +9,13 @@ public class Typer : MonoBehaviour
 {
     public TMP_Text wordOutput = null;
     public WordBank wordBank = null;
+    private GameObject enemyObject;
 
     private string currentWord = string.Empty;
     private string typedWord = string.Empty;
     private string remainingWord = string.Empty;
+
+    private static int level = 0;
 
     // Start is called before the first frame update
     private void Start()
@@ -32,7 +35,7 @@ public class Typer : MonoBehaviour
         typedWord = string.Empty;
 
         // Get word from word bank
-        currentWord = wordBank.GetWord();
+        currentWord = wordBank.GetWord(level);
         DisplayWord(typedWord, currentWord);
     }
 
@@ -71,6 +74,11 @@ public class Typer : MonoBehaviour
 
             if(IsWordComplete())
             {
+                enemyObject = GameObject.Find("Enemy(Clone)");
+                Destroy(enemyObject);
+
+                // insert counter
+
                 GetNewWord();
             }
         }
@@ -92,5 +100,15 @@ public class Typer : MonoBehaviour
     private bool IsWordComplete()
     {
         return remainingWord.Length == 0;
+    }
+
+    private void OnTriggerEnter2D(Collider2D  collision)
+    {
+        Debug.Log("GAMEOVER");
+        wordOutput.text = "<color=red>Game Over</color>";
+
+        // to prevent memory overload
+        enemyObject = GameObject.Find("Enemy(Clone)");
+        Destroy(enemyObject);
     }
 }
