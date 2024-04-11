@@ -11,6 +11,8 @@ public class Options : MonoBehaviour
     Resolution[] resolutions;
     private void Start()
     {
+        Screen.SetResolution(800, 1000, FullScreenMode.MaximizedWindow);
+        /*
         int currentResIndex = 0;
 
         resolutions = Screen.resolutions;
@@ -31,6 +33,7 @@ public class Options : MonoBehaviour
         Resolutions.AddOptions(options);
         Resolutions.value = currentResIndex;
         Resolutions.RefreshShownValue();
+        */
     }
     public void setQuality (int quality)
     {
@@ -41,6 +44,6 @@ public class Options : MonoBehaviour
     {
         Resolution Resolution = resolutions[Res];
 
-        Screen.SetResolution(Resolution.width, Resolution.height, Screen.fullScreen);
+        Screen.SetResolution(800, 1000, FullScreenMode.MaximizedWindow);
     }
 }
