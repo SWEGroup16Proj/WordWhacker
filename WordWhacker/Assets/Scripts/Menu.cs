@@ -22,10 +22,10 @@ public class Menu : MonoBehaviour
         
     }
 
-    public void playGame()
+    /*public void playGame()
     {
         SceneManager.LoadScene("TypingPrototype");
-    }
+    }*/
 
     //Will close the game when clicked
     public void quitGame()
