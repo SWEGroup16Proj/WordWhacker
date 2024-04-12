@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,11 @@ public class Menu : MonoBehaviour
     private GameObject menuPanel;
     [SerializeField]
     private GameObject optionPanel;
+    [SerializeField]
+    private GameObject loginPanel;
+    public TMP_InputField usernameInput; // Make sure these are correctly assigned in the Unity inspector
+    public TMP_InputField passwordInput;
+    public TextMeshProUGUI feedbackText; // This should be TextMeshProUGUI for UI text display
     // Start is called before the first frame update
     void Start()
     {
@@ -38,4 +44,70 @@ public class Menu : MonoBehaviour
         optionPanel.SetActive(false);
     }
 
+    public void ShowLogin()
+    {
+        menuPanel.SetActive(false);
+        loginPanel.SetActive(true);
+    }
+
+    public void CreateAccount()
+    {
+        string username = usernameInput.text;  // Directly access the text property of TMP_InputField
+        string password = passwordInput.text;  // Same here for password
+
+        // Check minimum length requirements
+
+        if (username.Length <= 3)
+        {
+            feedbackText.text = "Username must be longer than 3 characters.";
+            return;
+        }
+        if (password.Length <= 6)
+        {
+            feedbackText.text = "Password must be longer than 6 characters.";
+            return;
+        }
+        bool success = AccountManagerBehaviour.Instance.AccountManager.CreateAccount(username, password);
+        if (success)
+        {
+            feedbackText.text = "Account created successfully!";
+            Debug.Log("Account created successfully!");
+        }
+        else
+        {
+            feedbackText.text = "Account creation failed. User already exists.";
+            Debug.Log("Account creation failed. User already exists.");
+        }
+    }
+
+    public void Login()
+    {
+        string username = usernameInput.text;
+        string password = passwordInput.text;
+
+        // Check minimum length requirements
+        if (username.Length <= 0)
+        {
+            feedbackText.text = "Please enter username"; // Correctly accessing the text property
+            return;
+        }
+        if (password.Length <= 0)
+        {
+            feedbackText.text = "Please enter password";
+            return;
+        }
+
+        bool success = AccountManagerBehaviour.Instance.AccountManager.Login(username, password);
+        if (success)
+        {
+            feedbackText.text = "Login successful!";
+            Debug.Log("Login successful!");
+        }
+        else
+        {
+            feedbackText.text = "Login failed. Check username and password.";
+            Debug.Log("Login failed. Check username and password.");
+        }
+    }
 }
+
