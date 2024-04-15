@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 780922165563367211}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +50,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.01
+  m_GravityScale: 0.005
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -186,11 +186,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_LocalPosition.x
@@ -226,7 +226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 100
+      value: -79.4
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -246,7 +246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7124323121770358097, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

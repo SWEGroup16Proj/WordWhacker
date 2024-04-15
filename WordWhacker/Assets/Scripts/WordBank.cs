@@ -9,11 +9,12 @@ using UnityEngine.UI;
 public class WordBank : MonoBehaviour
 {
     private string filePath;
+    private static int level = 0;
 
     private List<string> tutorialWords = new List<string>()
     {
         // "the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"
-        "dog", "lazy", "that", "over", "jumps", "fox", "brown", "quick", "the"
+        "dog", "lazy", "a", "over", "jumps", "fox", "brown", "quick", "the"
     };
 
     private List<string> originalWords = new List<string>();
@@ -64,7 +65,7 @@ public class WordBank : MonoBehaviour
         }
     }
 
-    public string GetWord(int level)
+    public string GetWord()
     {
         string newWord = string.Empty;
 
@@ -79,7 +80,7 @@ public class WordBank : MonoBehaviour
             else
             {
                 level++;
-                Debug.Log("Level " + level);
+                // Debug.Log("Level " + level);
                 newWord = workingWords.Last();
                 Debug.Log(newWord);
                 workingWords.Remove(newWord);
