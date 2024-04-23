@@ -11,7 +11,8 @@ public class Typer : MonoBehaviour
     public Spawner spawner = null;
     public WordBank wordBank = null;
     private GameObject enemyObject;
-
+    
+    [SerializeField] Player player;
     private bool canType = true;
     private int wordCounter = 0;
 
@@ -139,6 +140,7 @@ public class Typer : MonoBehaviour
             if (textComponent.text == typedWord)
             {
                 Debug.Log("Destroy Word");
+                player.IncrementPoints(5);
                 Destroy(enemyObject);
                 
                 // Debug.Log("No Enemy: " + GameObject.FindWithTag("Enemy"));
@@ -159,17 +161,26 @@ public class Typer : MonoBehaviour
     // trigger game over once it reached bottom of screen
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        spawner.canSpawn = false;
-        canType = false;
-
-        Debug.Log("GAMEOVER");
-        wordOutput.text = "<color=red>Game Over</color>";
-
-        // to prevent memory overload
-        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemyObject in enemyObjects)
+        if(player.health>0)
         {
-            Destroy(enemyObject);
+            player.health--;
         }
+        else
+        {
+                spawner.canSpawn = false;
+                 canType = false;
+
+                 Debug.Log("GAMEOVER");
+             wordOutput.text = "<color=red>Game Over</color>";
+
+             // to prevent memory overload
+             GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
+             foreach (GameObject enemyObject in enemyObjects)
+                     {
+                      Destroy(enemyObject);
+
+                     }       
+        }
+        
     }
 }
