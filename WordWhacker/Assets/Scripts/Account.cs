@@ -16,11 +16,13 @@ public class Account
     public int HighScore { get; set; }
     private string currentAccount; // Reference to the currently logged-in account
 
+    public bool isAdmin {  get; set; }
+
     [JsonConstructor]
     public Account()
     {
     }
-    public Account(string username, string password)
+    public Account(string username, string password, bool isA = false)
     {
         if (string.IsNullOrWhiteSpace(username))
         {
@@ -30,6 +32,7 @@ public class Account
         Salt = GenerateSalt();
         HashedPassword = string.IsNullOrEmpty(password) ? new byte[0] : HashPassword(password, Salt);
         HighScore = 0;
+        isAdmin = isA;
     }
 
     private byte[] GenerateSalt()
@@ -187,7 +190,7 @@ public class AccountManager
             return false; // Username already exists
         }
 
-        accounts.Add(new Account(username, password));
+        accounts.Add(new Account(username, password, false));
 
         SaveAccountsToFile(AccountManagerBehaviour.Instance.accountFilePath);
         return true;
@@ -198,6 +201,39 @@ public class AccountManager
         Debug.Log($"Attempting login with Username: {username} Password: {password}");
         Account account = accounts.Find(acc => acc.Username == username);
         return account != null && account.VerifyPassword(password);
+    }
+    public bool IsAdmin(string username)
+    {
+        var account = accounts.Find(acc => acc.Username == username);
+        return account != null && account.isAdmin;
+    }
+    public void ResetHighScore(string username)
+    {
+        var account = accounts.Find(acc => acc.Username == username);
+        if (account != null)
+        {
+            account.HighScore = 0;
+            SaveAccountsToFile(AccountManagerBehaviour.Instance.accountFilePath); // Save the changes
+            Debug.Log($"High score reset for user {username}.");
+        }
+        else
+        {
+            Debug.LogError($"User {username} not found.");
+        }
+    }
+    public void DeleteAccount(string username)
+    {
+        var account = accounts.Find(acc => acc.Username == username);
+        if (account != null)
+        {
+            accounts.Remove(account);
+            SaveAccountsToFile(AccountManagerBehaviour.Instance.accountFilePath); // Save the changes
+            Debug.Log($"Account for user {username} deleted.");
+        }
+        else
+        {
+            Debug.LogError($"User {username} not found.");
+        }
     }
 
     public void UpdateHighScore(string username, int score)

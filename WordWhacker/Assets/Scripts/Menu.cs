@@ -14,10 +14,20 @@ public class Menu : MonoBehaviour
     private GameObject optionPanel;
     [SerializeField]
     private GameObject loginPanel;
+    [SerializeField]
+    private GameObject leaderboardPanel;
+    [SerializeField]
+    private GameObject AdminToolsPanel;
+    [SerializeField]
+    private GameObject AdminAccessButton;
     public TMP_InputField usernameInput; // Make sure these are correctly assigned in the Unity inspector
     public TMP_InputField passwordInput;
     public TextMeshProUGUI feedbackText; // This should be TextMeshProUGUI for UI text display
-
+    public TMP_InputField AdminusernameInput; // Make sure these are correctly assigned in the Unity inspector
+    public TMP_InputField AdminpasswordInput;
+    public TextMeshProUGUI AdminfeedbackText; // This should be TextMeshProUGUI for UI text display
+    private GameObject content;
+    
     //UI References
     public GameObject TyperPrefab;
     public GameObject SpawnerPrefab;
@@ -62,14 +72,33 @@ public class Menu : MonoBehaviour
     {
         menuPanel.SetActive(true);
         optionPanel.SetActive(false);
+        leaderboardPanel.SetActive(false);
+        loginPanel.SetActive(false);
+        AdminToolsPanel.SetActive(false);
+
     }
 
     public void ShowLogin()
     {
         menuPanel.SetActive(false);
         loginPanel.SetActive(true);
+        AdminToolsPanel.SetActive(false);
+
     }
 
+    public void ShowLeaderboard()
+    {
+        menuPanel.SetActive(false);
+        leaderboardPanel.SetActive(true);
+        AdminToolsPanel.SetActive(false);
+        AdminAccessButton.SetActive(true);
+
+    }
+    public void showAdminToolsPanel()
+    {
+        AdminAccessButton.SetActive(false);
+        AdminToolsPanel.SetActive(true);
+    }    
     public void CreateAccount()
     {
         string username = usernameInput.text;  // Directly access the text property of TMP_InputField
@@ -120,15 +149,47 @@ public class Menu : MonoBehaviour
         bool success = AccountManagerBehaviour.Instance.AccountManager.Login(username, password);
         if (success)
         {
-            feedbackText.text = "Login successful!";
+            feedbackText.text = "Login Successful";
             Debug.Log("Login successful!");
             AccountManagerBehaviour.Instance.currentAccount = username;
             StartGame();
         }
         else
         {
-            feedbackText.text = "Login failed. Check username and password.";
+            feedbackText.text = "Invalid usernamne or password, please try again";
             Debug.Log("Login failed. Check username and password.");
+        }
+    }
+    public void AdminLogin()
+    {
+        content = GameObject.Find("Content");
+        string username = AdminusernameInput.text;
+        string password = AdminpasswordInput.text;
+
+        if (username.Length <= 0)
+        {
+            feedbackText.text = "Please enter username";
+            return;
+        }
+        if (password.Length <= 0)
+        {
+            feedbackText.text = "Please enter password";
+            return;
+        }
+
+        bool success = AccountManagerBehaviour.Instance.AccountManager.Login(username, password);
+        if (success && AccountManagerBehaviour.Instance.AccountManager.IsAdmin(username)) // Check if the user is also an admin
+        {
+            AdminfeedbackText.text = "Admin Privilages Granted";
+            Debug.Log("Admin login successful!");
+            //AccountManagerBehaviour.Instance.currentAccount = username;
+            content.GetComponent<Leaderboard>().ToggleAdminButtons(true);  // Enable admin buttons
+
+        }
+        else
+        {
+            AdminfeedbackText.text = "Invalid Credentials";
+            Debug.Log("Login failed. Check username and password, or not an admin.");
         }
     }
 
