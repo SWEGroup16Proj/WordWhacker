@@ -1,99 +1,96 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour
 {
     public Typer typer = null;
 
-    private float minimumSpawnTime = 1f;
-    private float maximumSpawnTime = 3f;
-    private float spawnTime = 1f;
-    private float difficulty = 1f;
-    // private float spawnRate = 1f;
+    private float minimumSpawnTime = 2f;
+    private float maximumSpawnTime = 4f;
+    private float spawnTime;
+    private float startTime; // Time when the game started
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject canvas;
     public bool canSpawn = true;
 
+    public float testReduction;
     void Awake()
     {
-        SetSpawnTime();
+        // Record the start time of the game
+        startTime = Time.time;
+        SetInitialSpawnTime();
     }
-    
-    // Start is called before the first frame update
+
     void Start()
     {
         SpawnNow();
         StartCoroutine(Spawn());
     }
 
-    // Update is called once per frame
-    // private void Update()
-    // {
-    //     spawnTime -= Time.deltaTime * spawnRate;
-    // }
-
-    // determine spawn rate of enemies
-    private void SetSpawnTime()
+    private void SetInitialSpawnTime()
     {
-        spawnTime = Random.Range(minimumSpawnTime, maximumSpawnTime/difficulty);
-
-        // if(difficulty < 4.5f)
-        // {
-        //     difficulty *= 1.1f;
-        // }
-        // else if(minimumSpawnTime > 0.01f)
-        // {
-        //     minimumSpawnTime -= 0.01f;
-        // }
-
-        // Debug.Log(minimumSpawnTime + " < " + spawnTime + " < " + maximumSpawnTime/difficulty);
+        spawnTime = Random.Range(minimumSpawnTime, maximumSpawnTime);
     }
 
-    // instantiate enemies
+    private void UpdateSpawnTime()
+    {
+        // Calculate how much time has passed since the start
+        float timeSinceStart = Time.time - startTime;
+
+        // At 60 seconds (1 minute), we want the spawn time to be 2/3 of the initial value
+        // Calculate a reduction factor based on the elapsed time
+        float reductionFactor = Mathf.Clamp(timeSinceStart / 120f, 0f, 1f) / 5f;
+        float reducedMinimumSpawnTime = minimumSpawnTime * (1f - reductionFactor);
+
+        float reducedMaximumSpawnTime = maximumSpawnTime * (1f - reductionFactor);
+        testReduction = reductionFactor;
+        // Now set the spawn time using these new bounds
+        spawnTime = Random.Range(reducedMinimumSpawnTime, reducedMaximumSpawnTime);
+    }
+
     private IEnumerator Spawn()
     {
-        WaitForSeconds wait = new WaitForSeconds(spawnTime);
-
-        while(canSpawn)
+        while (canSpawn)
         {
-            yield return wait;
-            GameObject enemyObject = Instantiate(enemyPrefab, new Vector3(Random.Range(-7f, 7f), 5.5f, 0), Quaternion.identity, canvas.transform);
+            UpdateSpawnTime(); // Recalculate the spawn time every cycle
+            yield return new WaitForSeconds(spawnTime);
 
-            // change the enemy's word text
+            Vector3 spawnPosition = new Vector3(
+                transform.position.x + Random.Range(-350f, 350f),
+                1025f,
+                0);
+
+            GameObject enemyObject = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, canvas.transform);
+
             TMP_Text textComponent = enemyObject.transform.GetChild(0).GetComponent<TMP_Text>();
-            
-            // Change the text of the TMP_Text component
             if (textComponent != null)
             {
-                textComponent.text = typer.GetNewWord(); // Set the new text
+                textComponent.text = typer.GetNewWord();
             }
             else
             {
                 Debug.LogError("TMP_Text component not found on the child object.");
             }
-            
-            SetSpawnTime();
         }
     }
 
-    // instantiate enemies immediately
+
     public void SpawnNow()
     {
-        if(canSpawn)
+        if (canSpawn)
         {
-            GameObject enemyObject = Instantiate(enemyPrefab, new Vector3(Random.Range(-7f, 7f), 5.5f, 0), Quaternion.identity, canvas.transform);
+            Vector3 spawnPosition = new Vector3(
+                transform.position.x + Random.Range(-150f, 150f), // Random offset applied here
+                955f, // Same fixed y-coordinate as before
+                0);
 
-            // change the enemy's word text
+            GameObject enemyObject = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity/*, canvas.transform*/);
+
             TMP_Text textComponent = enemyObject.transform.GetChild(0).GetComponent<TMP_Text>();
-            
-            // Change the text of the TMP_Text component
             if (textComponent != null)
             {
-                textComponent.text = typer.GetNewWord(); // Set the new text
+                textComponent.text = typer.GetNewWord();
             }
             else
             {

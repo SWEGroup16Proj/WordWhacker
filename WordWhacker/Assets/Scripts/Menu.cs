@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,6 +17,17 @@ public class Menu : MonoBehaviour
     public TMP_InputField usernameInput; // Make sure these are correctly assigned in the Unity inspector
     public TMP_InputField passwordInput;
     public TextMeshProUGUI feedbackText; // This should be TextMeshProUGUI for UI text display
+
+    //UI References
+    public GameObject TyperPrefab;
+    public GameObject SpawnerPrefab;
+    public GameObject gamePrefab;
+    public GameObject WordBankPrefab;
+    public GameObject typer;
+    public GameObject spawner;
+    public GameObject game;
+    public GameObject wordBank;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -110,12 +122,34 @@ public class Menu : MonoBehaviour
         {
             feedbackText.text = "Login successful!";
             Debug.Log("Login successful!");
+            AccountManagerBehaviour.Instance.currentAccount = username;
+            StartGame();
         }
         else
         {
             feedbackText.text = "Login failed. Check username and password.";
             Debug.Log("Login failed. Check username and password.");
         }
+    }
+
+    private void StartGame()
+    {
+
+        //disable menu
+        menuPanel.SetActive(false);
+        optionPanel.SetActive(false);
+        loginPanel.SetActive(false);
+        //start game
+        //wordBank = Instantiate(WordBankPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        game = Instantiate(gamePrefab);
+        //typer = Instantiate(TyperPrefab, new Vector3(0, -5.25f, 0), Quaternion.identity);
+        //spawner = Instantiate(SpawnerPrefab, new Vector3(400, 1000f, 0), Quaternion.identity);
+
+
+    }
+    public void EndGame()
+    {
+        //enable menu
     }
 }
 

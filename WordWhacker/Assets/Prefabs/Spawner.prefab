@@ -47,3 +47,4 @@ MonoBehaviour:
   typer: {fileID: 0}
   enemyPrefab: {fileID: 1055161209508712826, guid: 57d2da7387ae79d4084819606c97a79c, type: 3}
   canvas: {fileID: 0}
+  canSpawn: 1

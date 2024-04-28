@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3811895057659329908}
   - component: {fileID: 5610236290661491283}
   - component: {fileID: 9193083556794539564}
+  - component: {fileID: 4128000614912101310}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7152930139536384079, guid: d71286ca30d121840aac4c09f4fba371, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -114,3 +115,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4128000614912101310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7507678733581039025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b8c57e2be558744acf8da46e6721d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  points: 0
+  counter: {fileID: 0}

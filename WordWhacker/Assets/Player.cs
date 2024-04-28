@@ -22,4 +22,8 @@ public class Player : MonoBehaviour
         points+=p;
         counter.addPoints(points);
    }
+    public int getPoints()
+    { 
+        return points;
+    }
 }

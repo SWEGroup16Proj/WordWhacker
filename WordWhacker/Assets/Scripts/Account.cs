@@ -14,6 +14,7 @@ public class Account
     public byte[] HashedPassword { get; set; }
     public byte[] Salt { get; set; }
     public int HighScore { get; set; }
+    private string currentAccount; // Reference to the currently logged-in account
 
     [JsonConstructor]
     public Account()

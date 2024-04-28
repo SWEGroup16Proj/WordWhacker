@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3472386440498670957}
   - component: {fileID: 5221817080450481476}
   - component: {fileID: 780922165563367211}
+  - component: {fileID: -3941064979859586545}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 913.8817, y: 335.9295, z: 1.1315792}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 126979963708143118}
@@ -50,7 +51,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.005
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -140,7 +141,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_Sprite: {fileID: 297761703447499198, guid: 43bc3fec88ed9f042aa63bed2ac37e28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -152,6 +153,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3941064979859586545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055161209508712826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa3089b1def55544b0a3f79a38175e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 30
 --- !u!1001 &800845801247929075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -206,19 +220,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -226,7 +240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -79.4
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -238,6 +252,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 783119021969278205, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633764515687811518, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
+      propertyPath: m_text
+      value: hello
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633764515687811518, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633764515687811518, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a4ed805dedd5576448ecf772bfb6057e, type: 2}
+    - target: {fileID: 6633764515687811518, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633764515687811518, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8343258027771083089, guid: a4ed805dedd5576448ecf772bfb6057e, type: 2}
+    - target: {fileID: 6633764515687811518, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7124323121770358097, guid: da0818b57fa87444e8f2d7e083fa7312, type: 3}

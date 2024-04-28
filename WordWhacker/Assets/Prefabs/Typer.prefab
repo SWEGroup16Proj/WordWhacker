@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5245922080401876587}
   m_Layer: 0
   m_Name: Typer
-  m_TagString: Untagged
+  m_TagString: typer
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordOutput: {fileID: 0}
+  spawner: {fileID: 0}
   wordBank: {fileID: 0}
+  player: {fileID: 0}
 --- !u!50 &8043292719817275156
 Rigidbody2D:
   serializedVersion: 4
@@ -109,7 +111,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 400, y: 55}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -119,5 +121,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 20, y: 0.5}
+  m_Size: {x: 775, y: 25}
   m_EdgeRadius: 0

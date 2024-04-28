@@ -7,7 +7,7 @@ public class AccountManagerBehaviour : MonoBehaviour
     public AccountManager AccountManager { get; private set; }
 
     public string accountFilePath;
-
+    public string currentAccount;
     private void Awake()
     {
         if (Instance == null)
