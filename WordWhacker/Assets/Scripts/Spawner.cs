@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
 
         // At 60 seconds (1 minute), we want the spawn time to be 2/3 of the initial value
         // Calculate a reduction factor based on the elapsed time
-        float reductionFactor = Mathf.Clamp(timeSinceStart / 120f, 0f, 1f) / 5f;
+        float reductionFactor = Mathf.Clamp(timeSinceStart / 180f, 0f, 1f) / 3f;
         float reducedMinimumSpawnTime = minimumSpawnTime * (1f - reductionFactor);
 
         float reducedMaximumSpawnTime = maximumSpawnTime * (1f - reductionFactor);
