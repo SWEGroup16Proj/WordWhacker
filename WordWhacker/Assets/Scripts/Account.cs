@@ -195,7 +195,18 @@ public class AccountManager
         SaveAccountsToFile(AccountManagerBehaviour.Instance.accountFilePath);
         return true;
     }
+    public bool CreateAdminAccount()
+    {
+        if (accounts.Exists(acc => acc.Username == "admin"))
+        {
+            return false; // Username already exists
+        }
 
+        accounts.Add(new Account("admin", "password", true));
+
+        SaveAccountsToFile(AccountManagerBehaviour.Instance.accountFilePath);
+        return true;
+    }
     public bool Login(string username, string password)
     {
         Debug.Log($"Attempting login with Username: {username} Password: {password}");
