@@ -150,6 +150,8 @@ public class Menu : MonoBehaviour
     public void EndGame()
     {
         //enable menu
+        ShowMenu();
+        Destroy(game);
     }
 }
 

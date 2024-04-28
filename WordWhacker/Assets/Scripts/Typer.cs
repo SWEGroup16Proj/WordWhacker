@@ -11,7 +11,7 @@ public class Typer : MonoBehaviour
     public Spawner spawner = null;
     public WordBank wordBank = null;
     private GameObject enemyObject;
-    
+    private GameObject menu;
     [SerializeField] Player player;
     private bool canType = true;
     private int wordCounter = 0;
@@ -26,7 +26,7 @@ public class Typer : MonoBehaviour
         wordOutput = GameObject.FindWithTag("wordOut").GetComponent<TextMeshProUGUI>();
 
         wordOutput.text = string.Empty;
-        
+        menu = GameObject.FindGameObjectWithTag("menu");
     }
 
     // Update is called once per frame
@@ -175,13 +175,15 @@ public class Typer : MonoBehaviour
                  Debug.Log("GAMEOVER");
              wordOutput.text = "<color=red>Game Over</color>";
             AccountManagerBehaviour.Instance.AccountManager.UpdateHighScore(AccountManagerBehaviour.Instance.currentAccount, player.getPoints());
+            
             // to prevent memory overload
             GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
              foreach (GameObject enemyObject in enemyObjects)
                      {
                       Destroy(enemyObject);
 
-                     }       
+                     }
+            menu.GetComponent<Menu>().EndGame();
         }
         
     }
