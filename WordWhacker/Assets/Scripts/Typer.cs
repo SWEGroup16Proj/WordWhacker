@@ -8,11 +8,17 @@ using UnityEngine.UI;
 public class Typer : MonoBehaviour
 {
     public TMP_Text wordOutput = null;
+    public TMP_Text pointsOutput = null;
     public Spawner spawner = null;
     public WordBank wordBank = null;
     private GameObject enemyObject;
     private GameObject menu;
-    [SerializeField] Player player;
+
+    // [SerializeField] Player player;
+    private int health = 3;
+    private int points = 0;
+    // [SerializeField] pointCounter counter;
+    
     private bool canType = true;
     private int wordCounter = 0;
 
@@ -25,6 +31,7 @@ public class Typer : MonoBehaviour
         // GetNewWord();
         wordOutput = GameObject.FindWithTag("wordOut").GetComponent<TextMeshProUGUI>();
 
+        pointsOutput.text = "0";
         wordOutput.text = string.Empty;
         menu = GameObject.FindGameObjectWithTag("menu");
     }
@@ -143,7 +150,8 @@ public class Typer : MonoBehaviour
             if (textComponent.text == typedWord)
             {
                 Debug.Log("Destroy Word");
-                player.IncrementPoints(5);
+                // player.IncrementPoints(5);
+                addPoints();
                 Destroy(enemyObject);
                 
                 // Debug.Log("No Enemy: " + GameObject.FindWithTag("Enemy"));
@@ -160,31 +168,39 @@ public class Typer : MonoBehaviour
         return false;
     }
 
-    // trigger game over once it reached bottom of screen
-    private void OnTriggerEnter2D(Collider2D collision)
+    // update points coutner
+    private void addPoints()
     {
-        if(player.health>0)
+        points++;
+        pointsOutput.SetText(points.ToString());
+    }
+
+    // trigger game over once it reached bottom of screen
+    private IEnumerator OnTriggerEnter2D(Collider2D collision)
+    {
+        if(health > 1)
         {
-            player.health--;
+            health--;
+            Debug.Log("Health: " + health);
         }
         else
         {
-                spawner.canSpawn = false;
-                 canType = false;
+            spawner.canSpawn = false;
+            canType = false;
 
-                 Debug.Log("GAMEOVER");
-             wordOutput.text = "<color=red>Game Over</color>";
-            AccountManagerBehaviour.Instance.AccountManager.UpdateHighScore(AccountManagerBehaviour.Instance.currentAccount, player.getPoints());
+            Debug.Log("GAMEOVER");
+            wordOutput.text = "<color=red>Game Over</color>";
+            AccountManagerBehaviour.Instance.AccountManager.UpdateHighScore(AccountManagerBehaviour.Instance.currentAccount, points);//player.getPoints());
             
             // to prevent memory overload
             GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
-             foreach (GameObject enemyObject in enemyObjects)
-                     {
-                      Destroy(enemyObject);
+            foreach (GameObject enemyObject in enemyObjects)
+            {
+                Destroy(enemyObject);
+            }
 
-                     }
+            yield return new WaitForSeconds(5.0f);
             menu.GetComponent<Menu>().EndGame();
         }
-        
     }
 }

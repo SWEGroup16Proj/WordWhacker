@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -7,7 +6,7 @@ using UnityEngine.EventSystems;
 // Single instance of this script per GUI
 // An alternative would be to use a next/previous setting on a single GUI item, which would mean one script per InputField - not ideal
 
-public class tabBehaviour : MonoBehaviour
+public class TabBehaviour : MonoBehaviour
 {
     private EventSystem system;
 

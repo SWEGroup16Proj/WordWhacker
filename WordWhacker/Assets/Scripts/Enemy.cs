@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    public float speed = 50.0f; // Speed at which the enemy moves
+    private float speed = 30.0f; // Speed at which the enemy moves
     private Vector3 targetPosition = new Vector3(400, -430, 0); // Target position to move towards
 
     void Update()

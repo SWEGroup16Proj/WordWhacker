@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour
     public bool canSpawn = true;
 
     public float testReduction;
+
     void Awake()
     {
         // Record the start time of the game
@@ -56,21 +57,21 @@ public class Spawner : MonoBehaviour
             UpdateSpawnTime(); // Recalculate the spawn time every cycle
             yield return new WaitForSeconds(spawnTime);
 
-            Vector3 spawnPosition = new Vector3(
-                transform.position.x + Random.Range(-350f, 350f),
-                1025f,
-                0);
-
-            GameObject enemyObject = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, canvas.transform);
-
-            TMP_Text textComponent = enemyObject.transform.GetChild(0).GetComponent<TMP_Text>();
-            if (textComponent != null)
+            Vector3 spawnPosition = new Vector3(transform.position.x + Random.Range(-350f, 350f), 1025f, 0);
+            
+            if(canSpawn)
             {
-                textComponent.text = typer.GetNewWord();
-            }
-            else
-            {
-                Debug.LogError("TMP_Text component not found on the child object.");
+                GameObject enemyObject = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, canvas.transform);
+
+                TMP_Text textComponent = enemyObject.transform.GetChild(0).GetComponent<TMP_Text>();
+                if (textComponent != null)
+                {
+                    textComponent.text = typer.GetNewWord();
+                }
+                else
+                {
+                    Debug.LogError("TMP_Text component not found on the child object.");
+                }
             }
         }
     }
@@ -80,12 +81,14 @@ public class Spawner : MonoBehaviour
     {
         if (canSpawn)
         {
-            Vector3 spawnPosition = new Vector3(
-                transform.position.x + Random.Range(-150f, 150f), // Random offset applied here
-                955f, // Same fixed y-coordinate as before
-                0);
+            // Vector3 spawnPosition = new Vector3(
+            //     transform.position.x + Random.Range(-150f, 150f), // Random offset applied here
+            //     955f, // Same fixed y-coordinate as before
+            //     0);
+            Vector3 spawnPosition = new Vector3(transform.position.x + Random.Range(-350f, 350f), 1025f, 0);
 
-            GameObject enemyObject = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity/*, canvas.transform*/);
+            // GameObject enemyObject = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity/*, canvas.transform*/);
+            GameObject enemyObject = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, canvas.transform);
 
             TMP_Text textComponent = enemyObject.transform.GetChild(0).GetComponent<TMP_Text>();
             if (textComponent != null)
